@@ -21,6 +21,8 @@ class _MessageList extends HookConsumerWidget {
   final bool allowThreads;
   final String? currentPubkey;
   final bool isMember;
+  final bool? canContribute;
+  bool get mayContribute => canContribute ?? isMember;
   final bool isArchived;
   final double appBarTitleContentHeight;
   final double composerBottomInset;
@@ -46,6 +48,7 @@ class _MessageList extends HookConsumerWidget {
     this.allowThreads = true,
     required this.currentPubkey,
     required this.isMember,
+    this.canContribute,
     required this.isArchived,
     required this.appBarTitleContentHeight,
     required this.composerBottomInset,
@@ -711,6 +714,7 @@ class _MessageList extends HookConsumerWidget {
             channelId: channelId,
             currentPubkey: currentPubkey,
             isMember: isMember,
+            initialCanContribute: mayContribute,
             isArchived: isArchived,
             initialMessageId: initialMessageId,
           ),
@@ -992,6 +996,7 @@ class _MessageList extends HookConsumerWidget {
                             currentPubkey: currentPubkey,
                             allMessages: allMessages,
                             isMember: isMember,
+                            canContribute: mayContribute,
                             isArchived: isArchived,
                           )
                         else ...[
@@ -1033,6 +1038,7 @@ class _MessageList extends HookConsumerWidget {
                                     channelId: channelId,
                                     currentPubkey: currentPubkey,
                                     isMember: isMember,
+                                    canContribute: mayContribute,
                                     isArchived: isArchived,
                                   ),
                             channelNames: channelNamesMap,
@@ -1040,6 +1046,7 @@ class _MessageList extends HookConsumerWidget {
                             currentPubkey: currentPubkey,
                             allMessages: allowThreads ? allMessages : null,
                             isMember: isMember,
+                            canContribute: mayContribute,
                             isArchived: isArchived,
                             composerFocusNode: composerFocusNode,
                             restoreComposerFocus: restoreComposerFocus,
