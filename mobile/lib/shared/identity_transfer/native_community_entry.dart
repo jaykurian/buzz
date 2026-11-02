@@ -102,7 +102,7 @@ abstract final class NativeCommunityEntry {
             'name': name,
             'dark': dark,
             'primaryArgb': primaryArgb,
-            if (onPrimaryArgb != null) 'onPrimaryArgb': onPrimaryArgb,
+            'onPrimaryArgb': ?onPrimaryArgb,
             'invite': confirmInvite != null,
             'choices': [
               for (final choice in choices)
