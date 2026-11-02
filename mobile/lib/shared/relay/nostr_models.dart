@@ -298,6 +298,10 @@ class ChannelData {
   final DateTime? ttlDeadline;
   final bool isArchived;
 
+  /// The relay's bare `["unlisted"]` flag: an unlisted channel is left out of
+  /// listings and does not hold its name in the listed-name rule.
+  final bool isUnlisted;
+
   const ChannelData({
     required this.id,
     required this.name,
@@ -311,6 +315,7 @@ class ChannelData {
     this.ttlSeconds,
     this.ttlDeadline,
     this.isArchived = false,
+    this.isUnlisted = false,
   });
 
   factory ChannelData.fromEvent(NostrEvent event) {
@@ -365,6 +370,7 @@ class ChannelData {
       ttlSeconds: ttlSeconds,
       ttlDeadline: ttlDeadline,
       isArchived: isArchived,
+      isUnlisted: event.tags.any((t) => t.isNotEmpty && t[0] == 'unlisted'),
     );
   }
 }
